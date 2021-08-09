@@ -33,6 +33,11 @@ def main(request):
 
         lat, lon, timestamp, platform = json.loads(line[len(_DATA_PREFIX):])
 
+        # Reduce number of aggregates somehow, we just need some approximate
+        # direction
+        lat = round(lat, 1)
+        lon = round(lon, 1)
+
         length = math.sqrt(lat ** 2 + lon ** 2)
         lat /= length
         lon /= length
