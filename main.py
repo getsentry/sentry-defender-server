@@ -5,9 +5,14 @@ import math
 
 import flask
 import requests
+import sentry_sdk
 
 _DATA_PREFIX = "data:"
 
+sentry_sdk.init(
+    # DSN configured as envvar in google cloud run
+    traces_sample_rate=1.0
+)
 
 def main(request):
     max_lines = int(request.args.get("max_lines", 10000))
