@@ -15,7 +15,7 @@ sentry_sdk.init(
 )
 
 def main(request):
-    max_lines = int(request.args.get("max_lines", 10000))
+    max_lines = int(request.args.get("max_lines", 1000))
     upstream_response = requests.get(
         "https://live.sentry.io/stream",
         stream=True
