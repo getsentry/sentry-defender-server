@@ -28,7 +28,9 @@ def main(request):
     for line in itertools.islice(upstream_response.iter_lines(), 0, 10 ** 6):
         line = line.decode("ascii")
 
-        assert line.startswith(_DATA_PREFIX)
+        if not line.startswith(_DATA_PREFIX):
+            continue
+
         lat, lon, timestamp, platform = json.loads(line[len(_DATA_PREFIX):])
 
         length = math.sqrt(lat ** 2 + lon ** 2)
