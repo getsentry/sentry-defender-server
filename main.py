@@ -25,7 +25,7 @@ def main(request):
 
     aggregates = collections.defaultdict(lambda: 0)
 
-    for line in itertools.islice(upstream_response.iter_lines(), 0, 10 ** 6):
+    for line in itertools.islice(upstream_response.iter_lines(), 0, max_lines):
         line = line.decode("ascii")
 
         if not line.startswith(_DATA_PREFIX):
